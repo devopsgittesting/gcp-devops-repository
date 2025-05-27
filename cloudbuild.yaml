@@ -1,27 +1,17 @@
 steps:
-  - name: 'node:18'
-    entrypoint: 'npm'
-    args: ['install']
-
-  - name: 'node:18'
-    entrypoint: 'npm'
-    args: ['test']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/devops-test-project-422413/my-app', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/devops-test-project-422413/my-app']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
     args:
       [
-        'build',
-        '-t',
-        'us-central1-docker.pkg.dev/$PROJECT_ID/gcp-devops-repository/nodejs-app:$COMMIT_SHA',
-        '.'
+        'run', 'deploy', 'my-app',
+        '--image', 'gcr.io/devops-test-project-422413/my-app',
+        '--region', 'us-central1',
+        '--platform', 'managed',
+        '--allow-unauthenticated'
       ]
-
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      [
-        'push',
-        'us-central1-docker.pkg.dev/$PROJECT_ID/gcp-devops-repository/nodejs-app:$COMMIT_SHA'
-      ]
-
-images:
-  - 'us-central1-docker.pkg.dev/$PROJECT_ID/gcp-devops-repository/nodejs-app:$COMMIT_SHA'
+  - images: gcr.io/devops-test-project-422413/my-app
