@@ -1,31 +1,27 @@
 steps:
-  # Step 1: Install dependencies
   - name: 'node:18'
-    id: 'Install Dependencies'
     entrypoint: 'npm'
     args: ['install']
 
-  # Step 2: Run unit tests
   - name: 'node:18'
-    id: 'Run Tests'
     entrypoint: 'npm'
     args: ['test']
 
-  # Step 3: Build Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    id: 'Build Image'
     args:
-      - 'build'
-      - '-t'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/gcp-devops-repository/nodejs-app:$COMMIT_SHA'
-      - '.'
+      [
+        'build',
+        '-t',
+        'us-central1-docker.pkg.dev/$PROJECT_ID/gcp-devops-repository/nodejs-app:$COMMIT_SHA',
+        '.'
+      ]
 
-  # Step 4: Push image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    id: 'Push Image'
     args:
-      - 'push'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/gcp-devops-repository/nodejs-app:$COMMIT_SHA'
+      [
+        'push',
+        'us-central1-docker.pkg.dev/$PROJECT_ID/gcp-devops-repository/nodejs-app:$COMMIT_SHA'
+      ]
 
 images:
   - 'us-central1-docker.pkg.dev/$PROJECT_ID/gcp-devops-repository/nodejs-app:$COMMIT_SHA'
