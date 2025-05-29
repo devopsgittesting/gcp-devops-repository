@@ -14,5 +14,5 @@ steps:
         '--platform', 'managed',
         '--allow-unauthenticated'
       ]
-    images: 
+  images: 
     - gcr.io/devops-test-project-422413/my-app
