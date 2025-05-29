@@ -1,7 +1,5 @@
-# Dockerfile
-FROM node:18
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install
-COPY . .
-CMD ["node", "index.js"]
+FROM python:3.12-slim
+RUN  pip install flask     
+WORKDIR /myapp
+COPY main.py /myapp/main.py
+CMD [ "python3", "/myapp/main.py" ]                   
