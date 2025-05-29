@@ -2,8 +2,6 @@ steps:
 
 - name: 'gcr.io/cloud-builders/git'
   args: ['clone', 'https://github.com/devopsgittesting/gcp-devops-repository.git']
-	
-
   # Step 2: Build Docker image
 
 - name: 'gcr.io/cloud-builders/docker'
@@ -21,7 +19,7 @@ steps:
         'set',
         'image',
         'deployment/cicd-gke-dep',
-        'my-container=gcr.io/$PROJECT_ID/my-app'
+        'my-container=gcr.io/$PROJECT_ID/{CINAME}'
       ]
   env:
     - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
