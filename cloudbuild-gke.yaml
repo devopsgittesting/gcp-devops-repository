@@ -19,7 +19,7 @@ steps:
         'set',
         'image',
         'deployment/ci-cd-gke-dep',
-        'my-container=gcr.io/$PROJECT_ID/${_CINAME}'
+        'gke-image-sha256-1=gcr.io/$PROJECT_ID/${_CINAME}'
       ]
   env:
     - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
