@@ -1,12 +1,12 @@
 steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/devops-test-project-422413/my-app', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/devops-test-project-422413/my-app', '.']
 
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/devops-test-project-422413/my-app']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/devops-test-project-422413/my-app']
 
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args:
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
       [
         'run', 'deploy', 'my-app',
         '--image', 'gcr.io/devops-test-project-422413/my-app',
@@ -14,5 +14,5 @@ steps:
         '--platform', 'managed',
         '--allow-unauthenticated'
       ]
-  images: 
-    - gcr.io/devops-test-project-422413/my-app
+images: 
+- gcr.io/devops-test-project-422413/my-app
