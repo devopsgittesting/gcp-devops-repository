@@ -18,12 +18,12 @@ steps:
       [
         'set',
         'image',
-        'deployment/cicd-gke-dep',
+        'deployment/ci-cd-gke-dep',
         'my-container=gcr.io/$PROJECT_ID/${_CINAME}'
       ]
   env:
     - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=cicd-cluster'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=ci-cd-cluster'
 
 substitutions:
   _PROJECT_ID : devops-test-project-422413
