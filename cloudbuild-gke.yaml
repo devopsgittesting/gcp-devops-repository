@@ -5,12 +5,12 @@ steps:
   # Step 2: Build Docker image
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/${PROJECT_ID}/{_CINAME}', '.']
+  args: ['build', '-t', 'gcr.io/${PROJECT_ID}/${_CINAME}', '.']
 
   # Step 3: Push image to Google Container Registry
   
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/${PROJECT_ID}/{_CINAME}']
+  args: ['push', 'gcr.io/${PROJECT_ID}/${_CINAME}']
 
   # Step 3: Set up kubectl (uses gke-deploy builder)
 - name: 'gcr.io/cloud-builders/kubectl'
